@@ -15,6 +15,9 @@ func _ready() -> void:
 
 
 func update_color_from_percentage(percentage: int):
-	sprite.modulate = lerp(sprite.modulate, dark_tea, percentage / 100.0)
+	var val =  percentage / 100.0
+	print('received ', percentage, '% which is ', val)
+
+	sprite.modulate = lerp(light_tea, dark_tea, val)
 
 
