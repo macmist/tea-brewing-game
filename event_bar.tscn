@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cd00qgjp0xqqk"]
+
+[ext_resource type="Script" uid="uid://bjtay1ni7uloi" path="res://event_bar.gd" id="1_lj8kp"]
+[ext_resource type="Texture2D" uid="uid://qvw1eld820rj" path="res://icon.svg" id="1_xaho6"]
+
+[node name="Event Bar" type="Node2D" unique_id=337379755]
+script = ExtResource("1_lj8kp")
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=2093970558]
+scale = Vector2(0.1, 0.5)
+texture = ExtResource("1_xaho6")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=893820161]
+scale = Vector2(5, 0.1)
+texture = ExtResource("1_xaho6")
+
+[node name="Safezone" type="Sprite2D" parent="." unique_id=1359249409]
+scale = Vector2(1, 0.2)
+texture = ExtResource("1_xaho6")

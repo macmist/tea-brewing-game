@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dos8c2ei4tv1v"]
+
+[ext_resource type="Script" uid="uid://bqsnc1tppe04t" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d4a27qtluow27" path="res://cup.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cd00qgjp0xqqk" path="res://event_bar.tscn" id="3_h2yge"]
+
+[node name="Main" type="Node2D" unique_id=145217226]
+script = ExtResource("1_0xm2m")
+
+[node name="Cup" parent="." unique_id=178729877 instance=ExtResource("1_ig7tw")]
+position = Vector2(446, 265)
+
+[node name="Button" type="Button" parent="." unique_id=538181958]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Brew"
+
+[node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
+position = Vector2(583, 101)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
