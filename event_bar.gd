@@ -9,12 +9,17 @@ class_name EventBar
 @export var speed: int = 300
 
 signal reached_end
+signal progress(percent: int)
 
+var start_x = 0
 var end_x = 0
 var end_reached = false
 
 var safe_zone_start = 0
 var safe_sone_end = 0
+
+var is_in_safe_zone = false
+var is_started = false
 
 
 func find_safe_zone_bounds():
@@ -26,28 +31,43 @@ func find_safe_zone_bounds():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var rect = background.get_rect()
-	var start_x = rect.position.x * background.scale.x
+	start_x = rect.position.x * background.scale.x
 	end_x = start_x + rect.size.x * background.scale.x
-	
-	cursor.position.x = start_x
 	safe_zone.modulate = Color.GREEN
 	find_safe_zone_bounds()
-	pass # Replace with function body.
+	init()
+	
+
+
+func init():
+	cursor.position.x = start_x
+
+func toggle():
+	is_started = !is_started
+
 
 func try_emit_end():
 	if !end_reached:
 		end_reached = true
 		reached_end.emit()
 
+func calculate_progress():
+	if end_x - start_x == 0:
+		return
+	var percentage = floor(100 * (cursor.position.x - start_x) / (end_x - start_x))
+	print(percentage)
+	progress.emit(percentage)
+
+
 func _process(delta: float) -> void:
+	if !is_started:
+		return
 	if cursor.position.x >= end_x:
 		try_emit_end()
 		return
 	cursor.position.x += delta * speed
-	if cursor.position.x >= safe_zone_start && cursor.position.x <= safe_sone_end:
-		cursor.modulate = Color.GREEN
-	else:
-		cursor.modulate = Color.RED
+	is_in_safe_zone =  cursor.position.x >= safe_zone_start && cursor.position.x <= safe_sone_end
 	if cursor.position.x > end_x:
 		cursor.position.x = end_x
+	calculate_progress()
 		
