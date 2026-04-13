@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://6m6e5irxv5xr" path="res://cup.gd" id="1_hxhe5"]
 [ext_resource type="Texture2D" uid="uid://bxs6yp8pmh4ex" path="res://teacup.png" id="2_358bg"]
-[ext_resource type="Texture2D" uid="uid://baogeilddsttk" path="res://teacup-inside.png" id="3_q1s7v"]
+[ext_resource type="Texture2D" uid="uid://dl0sbi242rg7n" path="res://tea-water.png" id="3_358bg"]
 
 [node name="Cup" type="Node2D" unique_id=178729877]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_hxhe5")
 
 [node name="Outside" type="Sprite2D" parent="." unique_id=2022991112]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_358bg")
 
 [node name="Content" type="Sprite2D" parent="." unique_id=938944463]
-texture = ExtResource("3_q1s7v")
+texture = ExtResource("3_358bg")

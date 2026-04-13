@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bqsnc1tppe04t" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d4a27qtluow27" path="res://cup.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cd00qgjp0xqqk" path="res://event_bar.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://d2u5ggxl0g64a" path="res://character.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://wj2w07uwy3im" path="res://happy.png" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bt3w5tbtgd0ib" path="res://unhappy.png" id="6_272bh"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
@@ -17,5 +20,11 @@ text = "Brew"
 
 [node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
 position = Vector2(583, 101)
+
+[node name="Character" parent="." unique_id=747675128 instance=ExtResource("4_1bvp3")]
+position = Vector2(938, 171)
+scale = Vector2(0.3, 0.3)
+happy = ExtResource("5_7mycd")
+unhappy = ExtResource("6_272bh")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d2u5ggxl0g64a"]
+
+[ext_resource type="Texture2D" uid="uid://dprh5k4p2ssq4" path="res://body.png" id="1_pjt0s"]
+[ext_resource type="Script" uid="uid://bdveh0djfva5o" path="res://character.gd" id="1_wa5vi"]
+[ext_resource type="Texture2D" uid="uid://wj2w07uwy3im" path="res://happy.png" id="2_px5sl"]
+[ext_resource type="Texture2D" uid="uid://c3i8io7d1p13v" path="res://neutral.png" id="2_wa5vi"]
+[ext_resource type="Texture2D" uid="uid://bt3w5tbtgd0ib" path="res://unhappy.png" id="3_0qfo5"]
+
+[node name="Character" type="Node2D" unique_id=747675128]
+script = ExtResource("1_wa5vi")
+happy = ExtResource("2_px5sl")
+unhappy = ExtResource("3_0qfo5")
+neutral = ExtResource("2_wa5vi")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=470800515]
+position = Vector2(0, 710)
+texture = ExtResource("1_pjt0s")
+
+[node name="Face" type="Sprite2D" parent="." unique_id=1093137307]
+texture = ExtResource("2_wa5vi")

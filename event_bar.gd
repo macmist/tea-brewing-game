@@ -58,6 +58,13 @@ func calculate_progress():
 	print(percentage)
 	progress.emit(percentage)
 
+func get_bitterness():
+	if is_in_safe_zone: 
+		return 0
+	if cursor.position.x < safe_zone_start:
+		return -1
+	if cursor.position.x > safe_sone_end:
+		return 1
 
 func _process(delta: float) -> void:
 	if !is_started:
