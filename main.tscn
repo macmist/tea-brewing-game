@@ -4,27 +4,39 @@
 [ext_resource type="PackedScene" uid="uid://d4a27qtluow27" path="res://cup.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cd00qgjp0xqqk" path="res://event_bar.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2u5ggxl0g64a" path="res://character.tscn" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://wj2w07uwy3im" path="res://happy.png" id="5_7mycd"]
-[ext_resource type="Texture2D" uid="uid://bt3w5tbtgd0ib" path="res://unhappy.png" id="6_272bh"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
 
 [node name="Cup" parent="." unique_id=178729877 instance=ExtResource("1_ig7tw")]
-position = Vector2(446, 265)
-
-[node name="Button" type="Button" parent="." unique_id=538181958]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Brew"
+position = Vector2(362, 844)
+scale = Vector2(0.6, 0.6)
 
 [node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
-position = Vector2(583, 101)
+position = Vector2(351, 1024)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2080400742]
+anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=283368485]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1296266241]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer" unique_id=538181958]
+layout_mode = 2
+text = "Brew"
 
 [node name="Character" parent="." unique_id=747675128 instance=ExtResource("4_1bvp3")]
-position = Vector2(938, 171)
-scale = Vector2(0.3, 0.3)
-happy = ExtResource("5_7mycd")
-unhappy = ExtResource("6_272bh")
+position = Vector2(363, 229)
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Button" to="." method="_on_button_pressed"]

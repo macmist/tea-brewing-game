@@ -1,8 +1,8 @@
 extends Node2D
 @onready var cup: Cup = $Cup
-@onready var button: Button = $Button
 @onready var bar: EventBar = $"Event Bar"
 @onready var character: Character = $Character
+@onready var button: Button = $CanvasLayer/MarginContainer/Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,17 +11,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func success():
-	character.is_served = true
-	character.is_happy = true
-	character.update_face()
+	character.make_happy()
 
 func end_reached():
 	button.pressed.emit()
 
 func failed(reason: String = "too bitter"):
-	character.is_served = true
-	character.is_happy = false
-	character.update_face()
+	character.make_unhappy(reason)
 
 func _on_button_pressed() -> void:
 	bar.toggle()
