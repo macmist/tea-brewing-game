@@ -13,6 +13,7 @@ position = Vector2(362, 844)
 scale = Vector2(0.6, 0.6)
 
 [node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
+visible = false
 position = Vector2(351, 1024)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2080400742]
@@ -33,6 +34,7 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Button" type="Button" parent="CanvasLayer/MarginContainer" unique_id=538181958]
+visible = false
 layout_mode = 2
 text = "Brew"
 

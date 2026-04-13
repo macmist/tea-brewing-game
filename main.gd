@@ -8,24 +8,36 @@ extends Node2D
 func _ready() -> void:
 	bar.progress.connect(cup.update_color_from_percentage)
 	bar.reached_end.connect(end_reached)
+	character.passed_order.connect(start)
+	character.disappeared.connect(next_customer)
 	pass # Replace with function body.
+	
+func next_customer():
+	character.init()
+
+func start():
+	bar.visible = true
+	bar.init()
+	button.visible = true
+	button.text = 'brew'
 
 func success():
 	character.make_happy()
+	bar.visible = false
 
 func end_reached():
 	button.pressed.emit()
 
 func failed(reason: String = "too bitter"):
 	character.make_unhappy(reason)
+	bar.visible = false
 
 func _on_button_pressed() -> void:
 	bar.toggle()
 	if bar.is_started:
-		bar.init()
-		character.init()
 		button.text = "Stop"
 	else:
+		button.visible = false
 		var bitterness = bar.get_bitterness()
 		if bitterness == 0:
 			success()
@@ -33,4 +45,4 @@ func _on_button_pressed() -> void:
 			failed('too light')
 		else:
 			failed()
-		button.text = "Brew"
+		
