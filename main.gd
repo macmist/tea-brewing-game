@@ -4,6 +4,9 @@ extends Node2D
 @onready var character: Character = $Character
 @onready var button: Button = $CanvasLayer/MarginContainer/Button
 
+var failures = 0
+var failures_max = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	bar.progress.connect(cup.update_color_from_percentage)
@@ -13,7 +16,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 func next_customer():
-	character.init()
+	if failures < failures_max:
+		character.init()
+	else:
+		print('game over')
 
 func start():
 	bar.visible = true
@@ -24,6 +30,7 @@ func start():
 func success():
 	character.make_happy()
 	bar.visible = false
+	bar.next_difficulty()
 
 func end_reached():
 	button.pressed.emit()
@@ -31,6 +38,7 @@ func end_reached():
 func failed(reason: String = "too bitter"):
 	character.make_unhappy(reason)
 	bar.visible = false
+	failures+=1
 
 func _on_button_pressed() -> void:
 	bar.toggle()

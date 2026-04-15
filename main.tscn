@@ -15,6 +15,7 @@ scale = Vector2(0.6, 0.6)
 [node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
 visible = false
 position = Vector2(351, 1024)
+safe_zone_center = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2080400742]
 anchor_mode = 0
