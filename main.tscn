@@ -15,12 +15,11 @@ fail_sound = ExtResource("3_272bh")
 success_sound = ExtResource("4_5vw27")
 
 [node name="Cup" parent="." unique_id=178729877 instance=ExtResource("1_ig7tw")]
-position = Vector2(362, 844)
+position = Vector2(360, 926)
 scale = Vector2(0.6, 0.6)
 
 [node name="Event Bar" parent="." unique_id=337379755 instance=ExtResource("3_h2yge")]
-visible = false
-position = Vector2(351, 1024)
+position = Vector2(360, 1102)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2080400742]
 anchor_mode = 0
@@ -40,12 +39,11 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Button" type="Button" parent="CanvasLayer/MarginContainer" unique_id=538181958]
-visible = false
 layout_mode = 2
 text = "Brew"
 
 [node name="Character" parent="." unique_id=747675128 instance=ExtResource("4_1bvp3")]
-position = Vector2(363, 229)
+position = Vector2(360, 229)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=510833292]
 max_polyphony = 32
