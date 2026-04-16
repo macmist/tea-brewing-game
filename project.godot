@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Tea Brewing Game"
+config/name="Perfect Brew"
+config/description="Brew the perfect tea for your customers, otherwise they won't be happy"
 run/main_scene="uid://dos8c2ei4tv1v"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
