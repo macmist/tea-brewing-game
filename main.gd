@@ -18,6 +18,11 @@ func _ready() -> void:
 	bar.reached_end.connect(end_reached)
 	character.passed_order.connect(start)
 	character.disappeared.connect(next_customer)
+	
+	var center_x = get_viewport_rect().size.x / 2
+	bar.position.x = center_x
+	character.position.x = center_x
+	cup.position.x = center_x
 		
 	
 func next_customer():
