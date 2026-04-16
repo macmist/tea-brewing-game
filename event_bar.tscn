@@ -7,10 +7,6 @@
 [node name="Event Bar" type="Node2D" unique_id=337379755]
 script = ExtResource("1_lj8kp")
 
-[node name="Cursor" type="Sprite2D" parent="." unique_id=2093970558]
-scale = Vector2(0.1, 0.5)
-texture = ExtResource("1_xaho6")
-
 [node name="Background" type="Sprite2D" parent="." unique_id=893820161]
 scale = Vector2(300, 26)
 texture = ExtResource("3_jbk2o")
@@ -18,3 +14,7 @@ texture = ExtResource("3_jbk2o")
 [node name="Safezone" type="Sprite2D" parent="." unique_id=1359249409]
 scale = Vector2(100, 18)
 texture = ExtResource("3_jbk2o")
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=2093970558]
+scale = Vector2(0.1, 0.5)
+texture = ExtResource("1_xaho6")

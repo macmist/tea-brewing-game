@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bqsnc1tppe04t" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d4a27qtluow27" path="res://cup.tscn" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://v7ah67x2ieqq" path="res://Button.wav" id="2_lquwl"]
+[ext_resource type="AudioStream" uid="uid://cqfyxj1dtf2ed" path="res://Fail.wav" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://cd00qgjp0xqqk" path="res://event_bar.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2u5ggxl0g64a" path="res://character.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://cwxq7eps2edf5" path="res://success.wav" id="4_5vw27"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
+button_sound = ExtResource("2_lquwl")
+fail_sound = ExtResource("3_272bh")
+success_sound = ExtResource("4_5vw27")
 
 [node name="Cup" parent="." unique_id=178729877 instance=ExtResource("1_ig7tw")]
 position = Vector2(362, 844)
@@ -40,5 +46,8 @@ text = "Brew"
 
 [node name="Character" parent="." unique_id=747675128 instance=ExtResource("4_1bvp3")]
 position = Vector2(363, 229)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=510833292]
+max_polyphony = 32
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Button" to="." method="_on_button_pressed"]
