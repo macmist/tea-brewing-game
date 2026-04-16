@@ -47,12 +47,14 @@ func _ready() -> void:
 	start_x = rect.position.x * background.scale.x
 	end_x = start_x + rect.size.x * background.scale.x
 	safe_zone.modulate = Color.GREEN
+	background.modulate = Color.SANDY_BROWN
 	init()
 	rng.seed = hash(seed)
 	
 	
 func place_safe_zone():
 	var zone_center_x = start_x + safe_zone_center * (end_x - start_x)
+	print('center: ', zone_center_x, 'ss ', safe_zone_center)
 	var zone_width = safe_zone_size * (end_x - start_x)
 	safe_zone_start = zone_center_x - zone_width / 2
 	safe_zone_end = zone_center_x + zone_width / 2
