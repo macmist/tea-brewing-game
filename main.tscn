@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cd00qgjp0xqqk" path="res://event_bar.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2u5ggxl0g64a" path="res://character.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://cwxq7eps2edf5" path="res://success.wav" id="4_5vw27"]
+[ext_resource type="AudioStream" uid="uid://bjd2ucjpq0qdc" path="res://tea.wav" id="8_5vw27"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
@@ -48,4 +49,31 @@ position = Vector2(360, 229)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=510833292]
 max_polyphony = 32
 
+[node name="BG Music" type="AudioStreamPlayer" parent="." unique_id=144448624]
+stream = ExtResource("8_5vw27")
+autoplay = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=693683054]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2" unique_id=658928111]
+offset_right = 100.0
+offset_bottom = 66.0
+
+[node name="Effects Check" type="CheckButton" parent="CanvasLayer2/VBoxContainer" unique_id=934305095]
+layout_mode = 2
+theme_override_constants/h_separation = 11
+theme_override_font_sizes/font_size = 30
+theme_override_constants/check_v_offset = 4
+button_pressed = true
+text = "Effects"
+
+[node name="Music Check" type="CheckButton" parent="CanvasLayer2/VBoxContainer" unique_id=2107306189]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_constants/check_v_offset = 4
+button_pressed = true
+text = "Music"
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="toggled" from="CanvasLayer2/VBoxContainer/Effects Check" to="." method="_on_effects_check_toggled"]
+[connection signal="toggled" from="CanvasLayer2/VBoxContainer/Music Check" to="." method="_on_music_check_toggled"]

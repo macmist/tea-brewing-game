@@ -4,6 +4,7 @@ extends Node2D
 @onready var character: Character = $Character
 @onready var button: Button = $CanvasLayer/MarginContainer/Button
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var bg_music: AudioStreamPlayer = $"BG Music"
 
 @export var button_sound: Resource
 @export var fail_sound: Resource
@@ -23,8 +24,17 @@ func _ready() -> void:
 	bar.position.x = center_x
 	character.position.x = center_x
 	cup.position.x = center_x
+	
+	Game.effects_toggled.connect(update_effects)
+	Game.music_toggled.connect(update_music)
 		
 	
+func update_music(enabled: bool):
+	bg_music.stream_paused = !enabled
+	
+func update_effects(enabled: bool):
+	audio_player.stream_paused = !enabled
+		
 func next_customer():
 	if failures < failures_max:
 		character.init()
@@ -41,7 +51,7 @@ func success():
 	character.make_happy()
 	bar.visible = false
 	bar.next_difficulty()
-	if success_sound != null and not audio_player.playing:
+	if Game.effects_enabled and success_sound != null and not audio_player.playing:
 		audio_player.stream = success_sound
 		audio_player.play()
 
@@ -52,12 +62,12 @@ func failed(reason: String = "too bitter"):
 	character.make_unhappy(reason)
 	bar.visible = false
 	failures+=1
-	if fail_sound != null and not audio_player.playing:
+	if Game.effects_enabled and fail_sound != null and not audio_player.playing:
 		audio_player.stream = fail_sound
 		audio_player.play()
 
 func _on_button_pressed() -> void:
-	if !bar.is_started and button_sound != null and not audio_player.playing:
+	if Game.effects_enabled and !bar.is_started and button_sound != null and not audio_player.playing:
 		audio_player.stream = button_sound
 		audio_player.play()
 	bar.toggle()
@@ -73,3 +83,11 @@ func _on_button_pressed() -> void:
 		else:
 			failed()
 		
+
+
+func _on_effects_check_toggled(toggled_on: bool) -> void:
+	Game.toggle_effects(toggled_on)
+
+
+func _on_music_check_toggled(toggled_on: bool) -> void:
+	Game.toggle_music(toggled_on)
