@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bjd2ucjpq0qdc" path="res://tea.wav" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://iljmhypy8mlg" path="res://game_info.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://drmv1m7yilyid" path="res://game_over.gd" id="10_4c57u"]
+[ext_resource type="FontFile" uid="uid://bivdglk015t3t" path="res://Noto_Color_Emoji/NotoColorEmoji-Regular.ttf" id="10_efxa6"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
@@ -116,8 +117,9 @@ horizontal_alignment = 2
 
 [node name="Life" type="Label" parent="CanvasLayer2/Game info/VBoxContainer" unique_id=505500212]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_efxa6")
 theme_override_font_sizes/font_size = 30
-text = "❤️❤️❤️♡♡♡"
+text = "♥"
 
 [node name="Game Over" type="VBoxContainer" parent="CanvasLayer2" unique_id=857149940]
 anchors_preset = 8

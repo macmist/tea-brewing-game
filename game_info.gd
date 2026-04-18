@@ -4,7 +4,7 @@ extends MarginContainer
 @onready var life: Label = $VBoxContainer/Life
 
 var heart_full = '❤️'
-var heart_miss = '♡'
+var heart_miss = '💔'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
