@@ -6,9 +6,13 @@ class_name EventBar
 @onready var safe_zone: Sprite2D = $Safezone
 
 
-@export var speed: int = 300
-@export var safe_zone_size = .4
-@export var safe_zone_center = .5
+@export var start_speed: int = 300
+@export var start_safe_zone_size = .4
+@export var start_safe_zone_center = .5
+
+var speed = start_speed
+var safe_zone_size = start_safe_zone_size
+var safe_zone_center = start_safe_zone_center
 
 signal reached_end
 signal progress(percent: int)
@@ -27,6 +31,13 @@ var is_started = false
 var rng = RandomNumberGenerator.new()
 var seed = 'Tea'
 
+
+func restart():
+	speed = start_speed
+	safe_zone_size = start_safe_zone_size
+	safe_zone_center = start_safe_zone_center
+	rng = RandomNumberGenerator.new()
+	rng.seed = hash(seed)
 
 func randomize_x():
 	var half_size = safe_zone_size * 10 / 2

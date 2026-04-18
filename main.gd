@@ -18,7 +18,7 @@ func _ready() -> void:
 	bar.progress.connect(cup.update_color_from_percentage)
 	bar.reached_end.connect(end_reached)
 	character.passed_order.connect(start)
-	character.disappeared.connect(next_customer)
+	character.disappeared.connect(Game.get_next_state)
 	
 	var center_x = get_viewport_rect().size.x / 2
 	bar.position.x = center_x
@@ -27,7 +27,12 @@ func _ready() -> void:
 	
 	Game.effects_toggled.connect(update_effects)
 	Game.music_toggled.connect(update_music)
+	Game.next_customer.connect(next_customer)
+	Game.game_over.connect(game_over)
+	Game.init_game.connect(init)
 		
+
+	
 	
 func update_music(enabled: bool):
 	bg_music.stream_paused = !enabled
@@ -36,10 +41,8 @@ func update_effects(enabled: bool):
 	audio_player.stream_paused = !enabled
 		
 func next_customer():
-	if failures < failures_max:
-		character.init()
-	else:
-		print('game over')
+	character.init()
+
 
 func start():
 	bar.visible = true
@@ -51,6 +54,7 @@ func success():
 	character.make_happy()
 	bar.visible = false
 	bar.next_difficulty()
+	Game.add_score(1)
 	if Game.effects_enabled and success_sound != null and not audio_player.playing:
 		audio_player.stream = success_sound
 		audio_player.play()
@@ -62,6 +66,7 @@ func failed(reason: String = "too bitter"):
 	character.make_unhappy(reason)
 	bar.visible = false
 	failures+=1
+	Game.remove_life()
 	if Game.effects_enabled and fail_sound != null and not audio_player.playing:
 		audio_player.stream = fail_sound
 		audio_player.play()
@@ -82,8 +87,17 @@ func _on_button_pressed() -> void:
 			failed('too light')
 		else:
 			failed()
+			
+func init():
+	character.init()
+	character.visible = true
+	cup.visible = true
+	bar.visible = true
 		
-
+func game_over():
+	bar.visible = false
+	character.visible = false
+	cup.visible = false
 
 func _on_effects_check_toggled(toggled_on: bool) -> void:
 	Game.toggle_effects(toggled_on)

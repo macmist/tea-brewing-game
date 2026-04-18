@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d2u5ggxl0g64a" path="res://character.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://cwxq7eps2edf5" path="res://success.wav" id="4_5vw27"]
 [ext_resource type="AudioStream" uid="uid://bjd2ucjpq0qdc" path="res://tea.wav" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://iljmhypy8mlg" path="res://game_info.gd" id="9_kek77"]
+[ext_resource type="Script" uid="uid://drmv1m7yilyid" path="res://game_over.gd" id="10_4c57u"]
 
 [node name="Main" type="Node2D" unique_id=145217226]
 script = ExtResource("1_0xm2m")
@@ -40,6 +42,7 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Button" type="Button" parent="CanvasLayer/MarginContainer" unique_id=538181958]
+visible = false
 layout_mode = 2
 text = "Brew"
 
@@ -53,13 +56,29 @@ max_polyphony = 32
 stream = ExtResource("8_5vw27")
 autoplay = true
 
+[node name="Label" type="Label" parent="." unique_id=1134520618]
+visible = false
+offset_left = 40.0
+offset_top = 889.0
+offset_right = 680.0
+offset_bottom = 976.0
+theme_override_font_sizes/font_size = 30
+text = "Perfect
+Brew"
+horizontal_alignment = 1
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=693683054]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2" unique_id=658928111]
-offset_right = 100.0
-offset_bottom = 66.0
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2" unique_id=548536634]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="Effects Check" type="CheckButton" parent="CanvasLayer2/VBoxContainer" unique_id=934305095]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MarginContainer" unique_id=658928111]
+layout_mode = 2
+
+[node name="Effects Check" type="CheckButton" parent="CanvasLayer2/MarginContainer/VBoxContainer" unique_id=934305095]
 layout_mode = 2
 theme_override_constants/h_separation = 11
 theme_override_font_sizes/font_size = 30
@@ -67,13 +86,65 @@ theme_override_constants/check_v_offset = 4
 button_pressed = true
 text = "Effects"
 
-[node name="Music Check" type="CheckButton" parent="CanvasLayer2/VBoxContainer" unique_id=2107306189]
+[node name="Music Check" type="CheckButton" parent="CanvasLayer2/MarginContainer/VBoxContainer" unique_id=2107306189]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_constants/check_v_offset = 4
 button_pressed = true
 text = "Music"
 
+[node name="Game info" type="MarginContainer" parent="CanvasLayer2" unique_id=1491387139]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+script = ExtResource("9_kek77")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Game info" unique_id=2072148945]
+layout_mode = 2
+alignment = 2
+
+[node name="Score" type="Label" parent="CanvasLayer2/Game info/VBoxContainer" unique_id=526224047]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+
+[node name="Life" type="Label" parent="CanvasLayer2/Game info/VBoxContainer" unique_id=505500212]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "❤️❤️❤️♡♡♡"
+
+[node name="Game Over" type="VBoxContainer" parent="CanvasLayer2" unique_id=857149940]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+script = ExtResource("10_4c57u")
+
+[node name="Label" type="Label" parent="CanvasLayer2/Game Over" unique_id=1338434936]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+
+[node name="Restart" type="Button" parent="CanvasLayer2/Game Over" unique_id=1843194808]
+layout_mode = 2
+text = "Restart"
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="toggled" from="CanvasLayer2/VBoxContainer/Effects Check" to="." method="_on_effects_check_toggled"]
-[connection signal="toggled" from="CanvasLayer2/VBoxContainer/Music Check" to="." method="_on_music_check_toggled"]
+[connection signal="toggled" from="CanvasLayer2/MarginContainer/VBoxContainer/Effects Check" to="." method="_on_effects_check_toggled"]
+[connection signal="toggled" from="CanvasLayer2/MarginContainer/VBoxContainer/Music Check" to="." method="_on_music_check_toggled"]
+[connection signal="pressed" from="CanvasLayer2/Game Over/Restart" to="CanvasLayer2/Game Over" method="_on_restart_pressed"]
